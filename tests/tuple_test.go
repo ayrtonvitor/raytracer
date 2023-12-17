@@ -21,6 +21,9 @@ func TestTupleWithw1IsPoint(t *testing.T) {
     if valArr[3] != 1.0 {
         t.Errorf("Tuple is not a point. Got w != 1.0")
     }
+    if p == utils.Vector(4.3, -4.2, 3.1) {
+        t.Errorf("p is a also a vector")
+    }
 }
 
 func TestTupleWithw0IsVector(t *testing.T) {
@@ -37,5 +40,8 @@ func TestTupleWithw0IsVector(t *testing.T) {
     }
     if valArr[3] != 0.0 {
         t.Errorf("Tuple is not a point. Got w != 0.0")
+    }
+    if p == utils.Point(4.3, -4.2, 3.1) {
+        t.Errorf("p is a also a point")
     }
 }
