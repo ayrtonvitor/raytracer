@@ -1,5 +1,7 @@
 package utils
 
+import "errors"
+
 type Tuple struct {
     x, y, z, w float64
 }
@@ -33,6 +35,17 @@ func (t *Tuple) SetComps(x float64, y float64, z float64) {
     t.x = x
     t.y = y
     t.z = z
+}
+
+func (t1 *Tuple) Add(t2 Tuple) (Tuple, error) {
+    if t1.w == 1 && t2.w == 1 {
+        return *t1, errors.New("Can't add two points")
+    }
+    t := Tuple{t1.x + t2.x,
+               t1.y + t2.y,
+               t1.z + t2.z,
+               t1.w + t2.w}
+    return t, nil
 }
 
 func Point(x float64, y float64, z float64) Tuple {

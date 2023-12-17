@@ -138,3 +138,21 @@ func TestSetTupleComponents(t *testing.T) {
         t.Errorf("Unsuccessful component setting. Got %v", pArr)
     }
 }
+
+func TestTupleAddition(t *testing.T) {
+    p1 := utils.Point(3, -2, 5)
+    v := utils.Vector(-2, 3, 1)
+
+    p2, err := p1.Add(v)
+    if !p2.Equals(utils.Point(1, 1, 6)) {
+        t.Errorf("Error adding tuples. %v + %v != %v", p1, v, p2)
+    } else if err != nil {
+        t.Errorf("%v", err)
+    }
+
+    p3 := utils.Point(5, 0, -1)
+    p2, err = p1.Add(p3)
+    if err == nil {
+        t.Errorf("Two pointers were added.\n%v\n%v", p1, p3)
+    }
+}
