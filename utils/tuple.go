@@ -10,3 +10,14 @@ func (t *Tuple) AsArray() [4]float64 {
     }
     return [...]float64{t.x, t.y, t.z, t.w}
 }
+
+func Point(x float64, y float64, z float64) Tuple {
+    t := Tuple{x, y, z, 1.0}
+    return t
+}
+
+
+func Vector(x float64, y float64, z float64) Tuple {
+    t := Tuple{x, y, z, 0.0}
+    return t
+}
