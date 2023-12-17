@@ -18,6 +18,23 @@ func (t *Tuple) Equals(u Tuple) bool {
          FloatEqual(t.w, u.w))
 }
 
+func (t *Tuple) SetComp(i int, val float64) {
+    switch i {
+    case 0:
+        t.x = val
+    case 1:
+        t.y = val
+    case 2:
+        t.z = val
+    }
+}
+
+func (t *Tuple) SetComps(x float64, y float64, z float64) {
+    t.x = x
+    t.y = y
+    t.z = z
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t
