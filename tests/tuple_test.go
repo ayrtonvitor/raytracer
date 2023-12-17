@@ -209,6 +209,14 @@ func TestScalarMultiplicationTest(t *testing.T) {
     v := utils.Vector(1, -2, 3)
 
     if v.ScalarMult(3.5) != utils.Vector(3.5, -7, 10.5) {
-        t.Errorf("Got %v. Expected (3.5, -7, 10.5, 1)", v)
+        t.Errorf("Got %v. Expected (3.5, -7, 10.5, 0)", v)
+    }
+}
+
+func TestScalarDivision(t *testing.T) {
+    v := utils.Vector(1, -2, 3)
+
+    if v.Div(2.0) != utils.Vector(0.5, -1, 1.5) {
+        t.Errorf("Got %v. Expected (0.5, -1, 1.5, 0)", v)
     }
 }
