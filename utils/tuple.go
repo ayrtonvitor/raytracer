@@ -59,6 +59,14 @@ func (t1 *Tuple) Minus(t2 Tuple) (Tuple, error) {
 
     return res, nil
 }
+
+func (t *Tuple) Opposite() Tuple {
+    if t.w == 1 {
+        return *t
+    }
+    return Tuple{-t.x, -t.y, -t.z, 0}
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t

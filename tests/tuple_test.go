@@ -189,3 +189,18 @@ func HelperTestTupleSubtraction(t *testing.T, tp utils.Tuple, err error, x float
         t.Errorf("%v", err)
     }
 }
+
+func TestNegateTuples(t *testing.T) {
+    v := utils.Vector(-1, 2, 3)
+    v = v.Opposite()
+
+    if v != utils.Vector(1, -2, -3) {
+        t.Errorf("Got %v. Expected (-1, 2, 3, 0)", v)
+    }
+
+    p := utils.Point(1, 3, 5)
+    p = p.Opposite()
+    if p != utils.Point(1, 3, 5) {
+        t.Errorf("Got %v. Expected (1, 3, 5, 1)", p)
+    }
+}
