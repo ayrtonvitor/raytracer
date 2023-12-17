@@ -56,11 +56,39 @@ func TestTupleEquality(t *testing.T) {
     HelperTestTupleEquality(t,p1, p2)
 }
 
-
 func HelperTestTupleEquality(t *testing.T, t1 utils.Tuple, t2 utils.Tuple) {
     if !t1.Equals(t2) {
         t.Errorf("%v is close enough to %v. Got different.", t1, t2)
     }
+    t2Arr := t2.AsArray()
+
+    t2.SetComps(t2Arr[0] + 0.0000001,
+                t2Arr[1] + 0.0000001,
+                t2Arr[2] + 0.000001)
+    if !t1.Equals(t2) {
+        t.Errorf("%v is close enough to %v. Got different.", t1, t2)
+    }
+    t2.SetComps(t2Arr[0] - 0.0000001,
+                t2Arr[1] - 0.0000001,
+                t2Arr[2] - 0.000001)
+
+    t2.SetComp(0, t2Arr[0] + 0.01)
+    if t1.Equals(t2) {
+        t.Errorf("%v is not close enough to %v. Got equal.", t1, t2)
+    }
+
+    t2.SetComp(0, t2Arr[0] - 0.01)
+    t2.SetComp(1, t2Arr[1] - 0.01)
+    if t1.Equals(t2) {
+        t.Errorf("%v is not close enough to %v. Got equal.", t1, t2)
+    }
+
+    t2.SetComp(1, t2Arr[0] + 0.01)
+    t2.SetComp(2, t2Arr[2] + 0.01)
+    if t1.Equals(t2) {
+        t.Errorf("%v is not close enough to %v. Got equal.", t1, t2)
+    }
+}
 
 func TestSetTupleComponents(t *testing.T) {
     v := utils.Vector(1.5, 2.6, -7.3)
