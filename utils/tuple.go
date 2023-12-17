@@ -48,6 +48,17 @@ func (t1 *Tuple) Add(t2 Tuple) (Tuple, error) {
     return t, nil
 }
 
+func (t1 *Tuple) Minus(t2 Tuple) (Tuple, error) {
+    res := Tuple{t1.x - t2.x,
+                 t1.y - t2.y,
+                 t1.z - t2.z,
+                 t1.w - t2.w}
+    if res.w != 0.0 && res.w != 1.0 {
+        return *t1, errors.New("Cannot subtract points from vectors.")
+    }
+
+    return res, nil
+}
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t

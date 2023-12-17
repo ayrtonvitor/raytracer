@@ -156,3 +156,36 @@ func TestTupleAddition(t *testing.T) {
         t.Errorf("Two pointers were added.\n%v\n%v", p1, p3)
     }
 }
+
+func TestTupleSubtraction(t *testing.T) {
+    p1 := utils.Point(3, 2, 1)
+    p2 := utils.Point(5, 6, 7)
+    v1 := utils.Vector(8, 9, 0)
+    v2 := utils.Vector(3, 4, 5)
+
+    pmp, err := p1.Minus(p2)
+    pmv, err := p1.Minus(v1)
+    vmv, err := v1.Minus(v2)
+
+    HelperTestTupleSubtraction(t, pmp, err, -2, -4, -6, 0)
+    HelperTestTupleSubtraction(t, pmv, err, -5, -7, 1, 1)
+    HelperTestTupleSubtraction(t, vmv, err, 5, 5, -5, 0)
+
+    vmp, err := v1.Minus(p1)
+    if err == nil {
+        t.Errorf("%v - %v is not %v. Undefined behavior", v1, p1, vmp)
+    }
+}
+
+func HelperTestTupleSubtraction(t *testing.T, tp utils.Tuple, err error, x float64,
+    y float64, z float64, w float64) {
+
+    if tp.AsArray() != [...]float64{x, y, z, w} {
+        t.Errorf("got %v, expected (%v, %v, %v, %v)", tp, x, y, z, w)
+        return
+    }
+ 
+    if err != nil {
+        t.Errorf("%v", err)
+    }
+}
