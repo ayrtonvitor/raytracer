@@ -45,3 +45,20 @@ func TestTupleWithw0IsVector(t *testing.T) {
         t.Errorf("p is a also a point")
     }
 }
+
+func TestTupleEquality(t *testing.T) {
+    v1 := utils.Vector(4.3, -4.2, 3.1)
+    v2 := utils.Vector(4.3, -4.2, 3.1)
+    HelperTestTupleEquality(t,v1, v2)
+
+    p1 := utils.Point(4.3, -4.2, 3.1)
+    p2 := utils.Point(4.3, -4.2, 3.1)
+    HelperTestTupleEquality(t,p1, p2)
+}
+
+
+func HelperTestTupleEquality(t *testing.T, t1 utils.Tuple, t2 utils.Tuple) {
+    if !t1.Equals(t2) {
+        t.Errorf("%v is close enough to %v. Got different.", t1, t2)
+    }
+}

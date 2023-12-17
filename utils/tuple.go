@@ -11,6 +11,13 @@ func (t *Tuple) AsArray() [4]float64 {
     return [...]float64{t.x, t.y, t.z, t.w}
 }
 
+func (t *Tuple) Equals(u Tuple) bool {
+     return (FloatEqual(t.x, u.x) &&
+         FloatEqual(t.y, u.y) &&
+         FloatEqual(t.z, u.z) &&
+         FloatEqual(t.w, u.w))
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t
