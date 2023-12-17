@@ -67,6 +67,13 @@ func (t *Tuple) Opposite() Tuple {
     return Tuple{-t.x, -t.y, -t.z, 0}
 }
 
+func (t *Tuple) ScalarMult(c float64) Tuple {
+    if t.w == 1 {
+        return *t
+    }
+    return Vector(c * t.x, c * t.y, c * t.z)
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t
