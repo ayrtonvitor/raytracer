@@ -88,6 +88,10 @@ func (t *Tuple) Norm() float64 {
     return math.Sqrt(t.x * t.x + t.y * t.y + t.z * t.z)
 }
 
+func (t *Tuple) Normalize() Tuple {
+    return t.Div(t.Norm())
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t

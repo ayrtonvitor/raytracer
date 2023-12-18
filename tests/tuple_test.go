@@ -252,3 +252,21 @@ func TestVectorNorm(t *testing.T) {
         t.Errorf("Got %v. Expected %v", n5, math.Sqrt(14))
     }
 }
+
+func TestVectorNormalization(t *testing.T) {
+    v1 := utils.Vector(4, 0, 0)
+    v2 := utils.Vector(1, 2, 3)
+    
+    n1 := v1.Normalize()
+    n2 := v2.Normalize()
+    
+    if n1 != utils.Vector(1, 0, 0) {
+        t.Errorf("Got %v. Expected (1, 0, 0,0)", n1)
+    }
+    if !n2.Equals(utils.Vector(0.2672612, 0.5345224, 0.8017837)) {
+        t.Errorf("Got %v. Expected (0.2672612, 0.5345224, 0.8017837, 0)", n2)
+    }
+    if !utils.FloatEqual(n2.Norm(), 1.0) {
+        t.Errorf("Normalized vector is not unitary")
+    }
+}
