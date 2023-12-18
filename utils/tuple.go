@@ -96,6 +96,12 @@ func (t *Tuple) Dot(u Tuple) float64 {
     return t.x * u.x + t.y * u.y + t.z * u.z
 }
 
+func (t *Tuple) Cross(u Tuple) Tuple {
+    return Vector(t.y * u.z - t.z * u.y,
+                  t.z * u.x - t.x * u.z,
+                  t.x * u.y - t.y * u.x)
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t

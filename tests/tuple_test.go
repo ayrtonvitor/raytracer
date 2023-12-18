@@ -280,3 +280,19 @@ func TestDotProduct(t *testing.T) {
         t.Errorf("Got %v. Expected 22.0", dot)
     }
 }
+
+func TestCrossProduct(t *testing.T) {
+    a := utils.Vector(1, 2, 3)
+    b := utils.Vector(2, 3, 4)
+
+    crossAB := a.Cross(b)
+    crossBA := b.Cross(a)
+
+    if  crossAB != utils.Vector(-1, 2, -1) {
+        t.Errorf("Got %v. Expected (-1, 2, -1, 0)", crossAB)
+    }
+
+    if  crossBA != utils.Vector(1, -2, 1) {
+        t.Errorf("Got %v. Expected (1, -2, 1, 0)", crossBA)
+    }
+}
