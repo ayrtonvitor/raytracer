@@ -270,3 +270,13 @@ func TestVectorNormalization(t *testing.T) {
         t.Errorf("Normalized vector is not unitary")
     }
 }
+
+func TestDotProduct(t *testing.T) {
+    v1 := utils.Vector(1.5, 2, 3)
+    v2 := utils.Vector(2, 3.5,4)
+    dot := v1.Dot(v2)
+
+    if (dot != 22.0) {
+        t.Errorf("Got %v. Expected 22.0", dot)
+    }
+}
