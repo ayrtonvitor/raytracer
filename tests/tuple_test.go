@@ -1,8 +1,10 @@
 package utils
 
 import (
-    "testing"
-    "github.com/ayrtonvitor/raytracer/utils"
+	"math"
+	"testing"
+
+	"github.com/ayrtonvitor/raytracer/utils"
 )
 
 
@@ -218,5 +220,35 @@ func TestScalarDivision(t *testing.T) {
 
     if v.Div(2.0) != utils.Vector(0.5, -1, 1.5) {
         t.Errorf("Got %v. Expected (0.5, -1, 1.5, 0)", v)
+    }
+}
+
+func TestVectorNorm(t *testing.T) {
+    v1 := utils.Vector(1, 0, 0)
+    v2 := utils.Vector(0, 1, 0)
+    v3 := utils.Vector(0, 0, 1)
+    v4 := utils.Vector(1, 2, 3)
+    v5 := utils.Vector(-1, -2, -3)
+
+    n1 := v1.Norm()
+    n2 := v2.Norm()
+    n3 := v3.Norm()
+    n4 := v4.Norm()
+    n5 := v5.Norm()
+
+    if n1 != 1 {
+        t.Errorf("Got %v. Expected 1", n1)
+    }
+    if n2 != 1 {
+        t.Errorf("Got %v. Expected 1", n2)
+    }
+    if n3 != 1 {
+        t.Errorf("Got %v. Expected 1", n3)
+    }
+    if !utils.FloatEqual(n4, math.Sqrt(14)) {
+        t.Errorf("Got %v. Expected %v", n4, math.Sqrt(14))
+    }
+    if !utils.FloatEqual(n5, math.Sqrt(14)) {
+        t.Errorf("Got %v. Expected %v", n5, math.Sqrt(14))
     }
 }

@@ -1,6 +1,9 @@
 package utils
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
 
 type Tuple struct {
     x, y, z, w float64
@@ -81,11 +84,14 @@ func (t *Tuple) Div(c float64) Tuple {
     return Vector(t.x / c, t.y / c, t.z / c)
 }
 
+func (t *Tuple) Norm() float64 {
+    return math.Sqrt(t.x * t.x + t.y * t.y + t.z * t.z)
+}
+
 func Point(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 1.0}
     return t
 }
-
 
 func Vector(x float64, y float64, z float64) Tuple {
     t := Tuple{x, y, z, 0.0}
